@@ -1,0 +1,58 @@
+Select * from salgrade
+Select deptno from dept
+Select ename , sal , sal*0.05 "5% Increment" from emp
+Select ename , sal , sal*0.05 "5% Increment" , sal*0.05+sal "After increment 5% New salary" from emp
+Select * from emp where ename = 'BLAKE'
+Select ename || ' is hired on ' || hiredate || ' as a '||job "Information " from emp
+Select * from emp
+Describe emp
+Select * from dept
+DESCRIBE dept
+Select * from bonus
+Describe bonus
+Select * from salgrade
+DESCRIBE salgrade
+Select distinct job from emp
+
+
+Select ename , job , hiredate , empno from emp where job = 'MANAGER'
+Select ename , job , sal , comm from emp where sal > comm
+Select ename , job , sal from emp where sal <> 1200
+Select empno , job ,sal from emp where sal between 1200 and 4000
+Select ename from emp where ename like '%S%'
+Select ename from emp where ename like 'S%'
+Select ename from emp where ename like '%S'
+Select ename from emp where ename like '%TT%'
+Select ename from emp where ename like '%T%T%'
+Select ename from emp where ename like 'S%T'
+SELECT ename FROM emp WHERE	ename LIKE '_A%'
+SELECT ename FROM emp WHERE	ename LIKE '__A%'
+Select ename , job from emp where ename NOT in('SMITH','TURNER','SCOTT')
+SELECT ename, mgr FROM emp WHERE mgr IS NULL
+SELECT ename, deptno, sal FROM emp ORDER BY deptno, sal DESC
+Select ename , job , hiredate from emp order by ename desc , job DESC , hiredate DESC
+Select ename , job , sal , sal*0.05 "5%Increment" from emp where job in('MANAGER','PRESIDENT' ,'ANALYST') order by "5%Increment"
+SELECT empno, ename, job, sal FROM emp WHERE sal >= 1100 and job = 'CLERK'
+SELECT empno, ename, job, sal FROM emp WHERE sal >= 1100 or job = 'CLERK'
+SELECT empno, ename, sal*12 annsal FROM emp ORDER BY annsal;
+SELECT ename, job, sal FROM emp WHERE (job = 'SALESMAN' OR job = 'PRESIDENT') AND sal>1500
+SELECT ename, job, sal FROM emp WHERE job = 'SALESMAN' OR job = 'PRESIDENT' AND sal>1500
+
+
+
+Select deptno , ename , sal , job from emp where LOWER(job) = 'manager'
+Select ename || ' ' || deptno "NAME & DEPTNO" , LENGTH(ename) "Length" from emp where Length(ename) <= 7
+Select ename from emp where job like '%ANA%'
+SELECT ROUND(79.78) from DUAL
+SELECT TRUNC(79.78) FROM DUAL
+SELECT SYSDATE FROM DUAL
+SELECT ename, sal, comm, JOB , MOD(sal, comm) FROM emp WHERE	job = 'MANAGER'
+SELECT ename , ROUND((SYSDATE-hiredate)/30,0) "WORKING MONTH" FROM emp WHERE ENAME = 'TURNER'
+SELECT NEXT_DAY ('12-OCT-22','WEDNESDAY') FROM DUAL
+SELECT ENAME , HIREDATE , ROUND((SYSDATE-hiredate)/30,0) FROM EMP WHERE ENAME = 'BLAKE'
+SELECT ENAME , SAL , TO_CHAR(sal,'$99,999.99') SALARY FROM emp WHERE	ename = 'TURNER'
+SELECT ENAME , COMM NVL(COMM,0)*12 "ANNUAL COMM" FROM   emp
+SELECT ENAME , JOB, SAL , DECODE(job, 'CLERK', SAL*0.02+SAL, 'PRESIDENT', SAL * 0.05+SAL, 'SALESMAN', SAL*0.07+SAL, SAL) CHANGED_SALARY FROM emp
+SELECT INITCAP('I LOVE MY COUNTRY AND I LOVE MY JOB') FROM DUAL
+Select 'The comm of ' || ENAME || ' is ' || nvl(To_char(comm),'null') from emp
+

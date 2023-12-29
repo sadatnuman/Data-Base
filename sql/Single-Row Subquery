@@ -1,0 +1,44 @@
+Subquery--> based on an unknown value / criteria
+
+Subquery(inner query)
+Main Query(outer query)
+
+Subquery executes before main query.
+
+
+## who gets the salary more than 3000?
+select ename, sal from emp where sal > 3000
+
+## who gets the salary more than 'JONES'?
+select ename, sal from emp where sal > (select sal from emp where ename = 'JONES')
+
+## who gets the salary more than EMPNO 7566??
+select ename, sal from emp where sal > (select sal from emp where empno = 7566)
+
+## Show the ename , sal and hiredate who was hired before 'BLAKE' and gets the salary less than 'TURNER'?
+--> For this you have to know the hiredate of 'BLAKE' and the salary of 'TURNER'. HENCE, 2 SUBQUERIES
+select ename, sal, hiredate from emp where hiredate < (select hiredate from emp where ename = 'BLAKE')
+AND sal < (select sal from emp where ename = 'TURNER')
+
+## SHOW THE NAME AND JOB OF THE EMPLOYEES WHO HAS THE JOB SAME AS EMPNO 7369 AND SAL MORE THAN 7876?
+--> JOB OF 7369 AND SAL OF 7876 (SUB QUERY)
+SELECT ENAME AS NAME, JOB FROM EMP WHERE JOB = (SELECT JOB FROM EMP WHERE EMPNO = 7369)
+AND SAL > (SELECT SAL FROM EMP WHERE EMPNO = 7876)
+
+--> WE CAN USE GROUP FUNCTIONS IN SUBQUERIES 
+MIN(), MAX(), AVG(), COUNT(), SUM() ETC
+
+### SHOW THE NAME, SAL OF THE EMPLOYEE WHO IS GETTING THE MAX SAL 
+SELECT ENAME AS NAME, SAL FROM EMP WHERE SAL = (SELECT MAX(SAL) FROM EMP)
+
+### SHOW THE NAME, SAL OF THE EMPLOYEE WHO IS GETTING THE MIN SAL
+SELECT ENAME AS NAME, SAL FROM EMP WHERE SAL = (SELECT MIN(SAL) FROM EMP)
+
+### SHOW THE NAME AND SAL OF THE EMPLOYEE WHO IS GETTING THE SAL LESS THAN THE AVG SAL 
+SELECT ENAME AS NAME, SAL FROM EMP WHERE SAL < (SELECT AVG(SAL) FROM EMP)
+
+Select min(sal) from emp group by deptno--> if it was a subquery than it is not a single row subquery 
+
+we can't use a single row comparison operator with a multiple row subquery 
+
+SELECT ENAME, JOB FROM EMP WHERE JOB = (select job from emp where ename = 'SMYTHE')

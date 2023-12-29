@@ -1,0 +1,83 @@
+----->simple query
+
+----->Showing the new salary with 5% increment of all employees with their NAME, SALARY, 5% INCREMENT.
+SELECT e_name "NAME", e_salary "SALARY", e_salary*0.05 "5% INCREMENT", (e_salary*0.05)+e_salary "NEW SALARY" FROM employee;
+
+
+----> Query with a single row function
+----> Showing the id, name, job, salary of the employees by changing the salary for the people whose id is 202, 203, 204, 205 respectively 5%, 7%, 9% and 10% increment as “New salary”.
+SELECT
+    e_id AS "ID",
+    e_name AS "Name",
+    e_jobtype AS "JOB",
+    e_salary AS "SALARY",
+    DECODE(
+        e_id,
+        102, (e_salary * 0.05)+e_salary,
+        103, (e_salary * 0.07)+e_salary,
+        104, (e_salary * 0.09)+e_salary,
+        105, (e_salary * 0.1)+e_salary,
+        e_salary
+    ) AS "NEW SALARY"
+FROM
+    employee;
+    
+
+
+------> Query with a Multiple row function/ aggregate function
+----> Calculating the average salary, sum of total salary, and count of employees for the manager from the manage table.
+SELECT
+    m_id,
+    AVG(e_salary) AS avg_salary,
+    SUM(e_salary) AS SUM_Salary,
+    COUNT(*) AS employee_count
+FROM
+    manage
+GROUP BY
+    m_id;
+
+
+
+------->Single row subquery
+------->Showing the name, ID, and brand of the car that has a price less than the average.
+SELECT car_id, car_name, car_brand FROM car WHERE car_price < (SELECT AVG(car_price) FROM car);
+
+
+
+------->Multiple row subquery
+------->Showing the name, ID, and address of employees whose names are longer than 'Mohammed Doad'.
+SELECT e_id, e_name, e_address FROM employee WHERE e_id = ANY (SELECT e_id FROM employee WHERE LENGTH(e_name)>LENGTH('Mohammad Doad'));
+
+
+
+------>Right outer join
+----->List of all cars and their details, along with the corresponding customer ID of those who bought them. If a car has not been bought, display NULL for the customer ID.
+SELECT c.car_id, c.car_name, c.car_brand, c.car_color, b.c_id "Customer ID" FROM car c, buy b WHERE c.car_id = b.car_id(+);
+
+
+------>Self join 
+------> Self join of car table. Car table divided into 2 part: (a.car_id, a.car_name) and (b.car_id, b.car_brand, b.car_price)
+SELECT a.car_id, a.car_name, b.car_id, b.car_brand, b.car_price FROM car a, car b WHERE a.car_id = b.car_id;
+
+
+
+
+------>Simple view
+------>Create a view named as customer_view where car name, brand, color and price will be shown to the customer.
+CREATE VIEW customer_view AS SELECT car_name,car_brand,car_color,car_price FROM car;
+DESCRIBE customer_view;
+SELECT * FROM customer_view;
+
+
+------>Complex view
+------>Create a view named as customer_payment_view where Coustomer ID, Name and Payment ID, Date, Type will be shown.
+CREATE VIEW customer_payment_view (Coustomer_ID, Coustomer_Name, Payment_ID, Payment_Date, Payment_Type) AS SELECT c.c_id, c.c_name, p.p_id, p.p_date, p.p_type FROM customer c, pay p WHERE c.c_id = p.c_id;
+DESCRIBE customer_payment_view;
+SELECT * FROM customer_payment_view;
+
+
+
+
+
+
+

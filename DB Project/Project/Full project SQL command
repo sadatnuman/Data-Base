@@ -1,0 +1,156 @@
+create table manager(m_id number(10) primary key, m_name varchar2(30), m_salary number(10), m_phone number(11), m_address varchar2(30));
+describe manager;
+
+create table employee(e_id number(10) primary key, e_name varchar2(30), e_salary number(10), e_phone number(11), e_jobtype varchar2(30), e_address varchar2(30));
+describe employee;
+
+create table customer(c_id number(10) primary key, c_name varchar2(30), c_phone number(11), c_email varchar2(30), c_address varchar2(30));
+describe customer;
+
+create table car (car_id number(10) primary key, car_name varchar2(30), car_brand varchar2(30), car_color varchar2(15), car_price number(10));
+describe car;
+
+create table pay(p_id number(10) primary key, p_date varchar2(30), p_type varchar2(30), c_id number(10) constraint payfk references customer(c_id));
+describe pay;
+
+create table manage(e_id number(10) primary key, e_name varchar2(30), e_salary number(10), e_phone number(11), e_jobtype varchar2(30), e_address varchar2(30), m_id number(10) constraint managefk references manager(m_id));
+describe manage;
+
+create table assist(e_id number(10) primary key, c_id number(10) constraint assistfk references customer(c_id));
+describe assist;
+
+create table buy (c_id number(10) primary key, car_id number(10) constraint buyfk references car(car_id));
+describe buy;
+
+
+
+insert into manager (m_id,m_name,m_salary,m_phone,m_address) values(1,'MD. Nazmus Sadat Numan',100000,01724972425,'Rajbari,Dhaka');
+select * from manager;
+
+
+
+insert into employee (e_id,e_name,e_salary,e_phone,e_jobtype,e_address) values(101,'Hasibul Islam Hasib',10000,01700001111,'Selesman','Basundhara R/A');
+insert into employee (e_id,e_name,e_salary,e_phone,e_jobtype,e_address) values(102,'Adriyana Jannat',10000,01710001112,'Selesman','Gulshan');
+insert into employee (e_id,e_name,e_salary,e_phone,e_jobtype,e_address) values(103,'Mohammad Doad',10000,01700000131,'Selesman','Motijheel');
+insert into employee (e_id,e_name,e_salary,e_phone,e_jobtype,e_address) values(104,'Shahanoor Islam',10000,01700121311,'Selesman','Dhanmondi');
+insert into employee (e_id,e_name,e_salary,e_phone,e_jobtype,e_address) values(105,'Redwanul Haque',10000,01700110011,'Selesman','Mirpur');
+select * from employee;
+
+
+
+insert into customer (c_id,c_name,c_phone,c_email,c_address) values(201,'Sheikh Hasina Wazed',01700000000,'sheikhhasina@gmail.com','Gopalganj');
+insert into customer (c_id,c_name,c_phone,c_email,c_address) values(202,'Khaleda Khanam Putul',01700000001,'khaledazia@gmail.com','Dinajpur');
+insert into customer (c_id,c_name,c_phone,c_email,c_address) values(203,'Sayem Sobhan Anvir',01700000011,'sayemsobhananvir@gmail.com','Basundhara R/A');
+insert into customer (c_id,c_name,c_phone,c_email,c_address) values(204,'Salman F Rahman',01700000111,'salmanfrahman@gmail.com','Dhanmondi');
+insert into customer (c_id,c_name,c_phone,c_email,c_address) values(205,'Shakib Al Hasan',01700100111,'shakibalhasan@gmail.com','Magura');
+select * from customer;
+
+
+
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(301,'Lamborghini Huracán Evo','Lamborghini','Blu Asteria',17519880);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(302,'Rolls-Royce Ghost','Rolls-Royce','Black Sapphire',15894760);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(303,'Bentley Flying Spur','Bentley','Beluga',14582340);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(304,'Mercedes-Maybach S-Class','Mercedes-Maybach','Obsidian Black',13877000);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(305,'Range Rover SVAutobiography','Land Rover','Corris Grey',13757500);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(306,'Ferrari Roma','Ferrari','Rosso Corsa',12873200);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(307,'Porsche Panamera Turbo S','Porsche','Black',12342200);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(308,'Aston Martin DB11 V8','Aston Martin','Quantum Silver',11811160);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(309,'Lexus LS 500h','Lexus','Deep Blue Mica',11280000);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(310,'Quattroporte GranTurismo','Maserati','Nero Ribelle',10848840);
+select * from car;
+
+
+
+insert into pay (p_id,p_date,p_type,c_id) values(401,'10-Jan-2023','visa card',201);
+insert into pay (p_id,p_date,p_type,c_id) values(402,'20-Feb-2023','cash',202);
+insert into pay (p_id,p_date,p_type,c_id) values(403,'30-Mar-2023','cash',203);
+insert into pay (p_id,p_date,p_type,c_id) values(404,'11-Apr-2023','cash',204);
+insert into pay (p_id,p_date,p_type,c_id) values(405,'30-Aug-2023','visa card',205);
+select * from pay;
+
+
+
+insert into manage (e_id,e_name,e_salary,e_phone,e_jobtype,e_address,m_id) values(101,'Hasibul Islam Hasib',10000,01700001111,'Selesman','Basundhara R/A',1);
+insert into manage (e_id,e_name,e_salary,e_phone,e_jobtype,e_address,m_id) values(102,'Adriyana Jannat',10000,01710001112,'Selesman','Gulshan',1);
+insert into manage (e_id,e_name,e_salary,e_phone,e_jobtype,e_address,m_id) values(103,'Mohammad Doad',10000,01700000131,'Selesman','Motijheel',1);
+insert into manage (e_id,e_name,e_salary,e_phone,e_jobtype,e_address,m_id) values(104,'Shahanoor Islam',10000,01700121311,'Selesman','Dhanmondi',1);
+insert into manage (e_id,e_name,e_salary,e_phone,e_jobtype,e_address,m_id) values(105,'Redwanul Haque',10000,01700110011,'Selesman','Mirpur',1);
+select * from manage;
+
+
+
+insert into assist (e_id,c_id) values(101,201);
+insert into assist (e_id,c_id) values(102,202);
+insert into assist (e_id,c_id) values(103,203);
+insert into assist (e_id,c_id) values(104,204);
+insert into assist (e_id,c_id) values(105,205);
+select * from assist;
+
+
+
+insert into buy (c_id,car_id) values(201,305);
+insert into buy (c_id,car_id) values(202,304);
+insert into buy (c_id,car_id) values(203,306);
+insert into buy (c_id,car_id) values(204,301);
+insert into buy (c_id,car_id) values(205,310);
+select * from buy;
+
+
+
+
+SELECT e_name "NAME", e_salary "SALARY", e_salary*0.05 "5% INCREMENT", (e_salary*0.05)+e_salary "NEW SALARY" FROM employee;
+
+
+
+SELECT
+    e_id AS "ID",
+    e_name AS "Name",
+    e_jobtype AS "JOB",
+    e_salary AS "SALARY",
+    DECODE(
+        e_id,
+        102, (e_salary * 0.05)+e_salary,
+        103, (e_salary * 0.07)+e_salary,
+        104, (e_salary * 0.09)+e_salary,
+        105, (e_salary * 0.1)+e_salary,
+        e_salary
+    ) AS "NEW SALARY"
+FROM
+    employee;
+
+
+SELECT
+    m_id,
+    AVG(e_salary) AS avg_salary,
+    SUM(e_salary) AS SUM_Salary,
+    COUNT(*) AS employee_count
+FROM
+    manage
+GROUP BY
+    m_id;
+
+
+
+
+SELECT car_id, car_name, car_brand FROM car WHERE car_price < (SELECT AVG(car_price) FROM car);
+
+SELECT e_id, e_name, e_address FROM employee WHERE e_id = ANY (SELECT e_id FROM employee WHERE LENGTH(e_name)>LENGTH('Mohammad Doad'));
+
+
+
+
+SELECT a.car_id, a.car_name, b.car_id, b.car_brand, b.car_price FROM car a, car b WHERE a.car_id = b.car_id;
+
+SELECT c.car_id, c.car_name, c.car_brand, c.car_color, b.c_id "Customer ID" FROM car c, buy b WHERE c.car_id = b.car_id(+);
+
+
+
+
+CREATE VIEW customer_view AS SELECT car_name,car_brand,car_color,car_price FROM car;
+DESCRIBE customer_view;
+SELECT * FROM customer_view;
+
+CREATE VIEW customer_payment_view (Coustomer_ID, Coustomer_Name, Payment_ID, Payment_Date, Payment_Type) AS SELECT c.c_id, c.c_name, p.p_id, p.p_date, p.p_type FROM customer c, pay p WHERE c.c_id = p.c_id;
+DESCRIBE customer_payment_view;
+SELECT * FROM customer_payment_view;
+

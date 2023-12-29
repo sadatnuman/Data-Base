@@ -1,0 +1,23 @@
+create table manager(m_id number(10) primary key, m_name varchar2(30), m_salary number(10), m_phone number(11), m_address varchar2(30));
+describe manager;
+
+create table employee(e_id number(10) primary key, e_name varchar2(30), e_salary number(10), e_phone number(11), e_jobtype varchar2(30), e_address varchar2(30));
+describe employee;
+
+create table customer(c_id number(10) primary key, c_name varchar2(30), c_phone number(11), c_email varchar2(30), c_address varchar2(30));
+describe customer;
+
+create table car (car_id number(10) primary key, car_name varchar2(30), car_brand varchar2(30), car_color varchar2(15), car_price number(10));
+describe car;
+
+create table pay(p_id number(10) primary key, p_date varchar2(30), p_type varchar2(30), c_id number(10) constraint payfk references customer(c_id));
+describe pay;
+
+create table manage(e_id number(10) primary key, e_name varchar2(30), e_salary number(10), e_phone number(11), e_jobtype varchar2(30), e_address varchar2(30), m_id number(10) constraint managefk references manager(m_id));
+describe manage;
+
+create table assist(e_id number(10) primary key, c_id number(10) constraint assistfk references customer(c_id));
+describe assist;
+
+create table buy (c_id number(10) primary key, car_id number(10) constraint buyfk references car(car_id));
+describe buy;

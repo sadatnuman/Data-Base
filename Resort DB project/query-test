@@ -1,0 +1,92 @@
+select * from owner;
+select * from manager;
+select * from staff;
+select * from guest;
+select * from room;
+select * from resort;
+select * from own;
+select * from appoint;
+select * from control;
+select * from serve;
+select * from stay;
+select * from reserve;
+select * from come;
+select * from pay;
+
+----->simple query
+
+----->Showing the new salary with 5% increment of all staffs with their NAME, SALARY, 5% INCREMENT.
+SELECT s_id "ID", s_name "NAME", s_salary "SALARY", s_salary*0.05 "5% INCREMENT", (s_salary*0.05)+s_salary "NEW SALARY" FROM staff;
+
+
+----> Query with a single row function
+----> Showing the id, name, salary of the staffs by changing the salary for the people whose id is 202, 203, 204, 205 respectively 5%, 7%, 9% and 10% increment as “New salary”.
+SELECT
+    s_id AS "ID",
+    s_name AS "Name",
+    s_salary AS "SALARY",
+    DECODE(
+        s_id,
+        202, (s_salary * 0.05)+s_salary,
+        203, (s_salary * 0.07)+s_salary,
+        204, (s_salary * 0.09)+s_salary,
+        205, (s_salary * 0.1)+s_salary,
+        s_salary
+    ) AS "NEW SALARY"
+FROM
+    staff;
+
+
+------> Query with a Multiple row function/ aggregate function
+----> Calculating the average salary, sum of total salary, and count of staffs for the manager from the control table.
+SELECT
+    m_id,
+    ROUND(AVG(s_salary)) AS avg_salary,
+    SUM(s_salary) AS SUM_Salary,
+    COUNT(*) AS staff_count
+FROM
+    control
+GROUP BY
+    m_id;
+
+------->Single row subquery
+------->Showing the ID, name, salary where salary is less than the average salary.
+SELECT s_id, s_name , s_salary FROM staff WHERE s_salary < (SELECT AVG(s_salary) FROM staff);
+
+
+
+------->Multiple row subquery
+------->Showing the ID, name and salary of staffs whose names are longer than 14 character .
+SELECT s_id, s_name, s_salary FROM staff WHERE s_id = ANY (SELECT s_id FROM staff WHERE LENGTH(s_name)>14);
+
+
+
+------>Self join 
+------> Self join of staff table. staff table divided into 2 part: (a.s_id, a.s_name) and (b.s_id, b.s_address, b.s_nid)
+SELECT a.s_id, a.s_name, b.s_id, b.s_address, b.s_nid FROM staff a, staff b WHERE a.s_id = b.s_id;
+
+-------Equijoin
+-------Showing the reserved room along with which guest reserved the romm .
+select r.res_id, r.res_date , g.g_id, g.g_name from guest g, reserve r where g.g_id = r.g_id;
+
+
+-----simple view
+-----creating a simple view which will show the availabble room id and type.
+CREATE VIEW room_availability AS SELECT room_id,room_type FROM room where availability = 'available';
+DESCRIBE room_availability;
+SELECT * FROM room_availability;
+
+
+------>Complex view
+------>Create a view named as customer_payment_view where Coustomer ID, Name and Payment ID, Date, Type will be shown.
+CREATE VIEW guest_payment_view (Guest_id, Guest_Name, Pay_id, Pay_Date, Pay_Type) AS SELECT g.g_id, g.g_name, p.p_id, p.p_date, p.p_type FROM guest g, pay p WHERE g.g_id = p.g_id;
+DESCRIBE guest_payment_view; 
+SELECT * FROM guest_payment_view;
+
+
+------>showing which guest in which room.
+create view guest_roomno (guest_id, guest_name, guest_room_ID) AS select a.g_id, a.g_name ,b.room_id from guest a, stay b where a.g_id = b.g_id ;
+DESCRIBE guest_roomno;
+select * from guest_roomno;
+
+

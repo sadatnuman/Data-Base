@@ -1,0 +1,26 @@
+Multiple Row Subquery: Subquery that returns multiple rows is called Multiple row subquery 
+
+Comparison Operators: 
+in, any , all
+
+### show the name, sal and empno of the employee who gets the salary less than any of the 'CLERK' and his job is not 'CLERK'
+Select ename, sal, empno from emp where sal < ANY (select sal from emp where job = 'CLERK') AND JOB <> 'CLERK'
+
+### show the name, sal and empno of the employee who gets the salary GREATER than all of the 'CLERK' and his job is not 'CLERK'
+Select ename, sal, empno, job from emp where sal > ALL (select sal from emp where job = 'CLERK') AND JOB <> 'CLERK'
+
+### show the name, sal and empno of the employee who gets the salary greater than any of the 'CLERK' and his job is not 'ANAYST'
+Select ename, sal, empno, JOB from emp where sal > ANY (select sal from emp where job = 'CLERK') AND JOB <> 'ANALYST'
+
+### FIND THE DEPARTMENT WISE HISHEST SAL OF THE EMPLOYEES AND THE NAME AND SAL OF THE EMPLOYEES WHOM ARE GETTING THE HISHEST SAL
+ select ename, sal from emp where sal in (select max(sal) from emp group by deptno)
+
+### FIND THE DEPARTMENT WISE LOWEST SAL OF THE EMPLOYEES AND THE NAME AND SAL OF THE EMPLOYEES WHOM ARE GETTING THE LOWEST SAL
+ select ename, sal from emp where sal in (select min(sal) from emp group by deptno)
+
+### show the ename, sal and job of the employees where sal will be greater than the average sal of employees in all of the dept. 
+select ename, sal, job from emp where sal > all (select avg(sal) from emp group by deptno)
+
+### show the ename, sal and job of the employees where sal will be greater than the average sal of employees in any of the dept.  
+select ename, sal, job from emp where sal > any (select avg(sal) from emp group by deptno)
+

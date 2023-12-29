@@ -1,0 +1,52 @@
+insert into manager (m_id,m_name,m_salary,m_phone,m_address) values(1,'MD. Nazmus Sadat Numan',100000,01724972425,'Rajbari,Dhaka');
+
+insert into employee (e_id,e_name,e_salary,e_phone,e_jobtype,e_address) values(101,'Hasibul Islam Hasib',10000,01700001111,'Selesman','Basundhara R/A');
+insert into employee (e_id,e_name,e_salary,e_phone,e_jobtype,e_address) values(102,'Adriyana Jannat',10000,01710001112,'Selesman','Gulshan');
+insert into employee (e_id,e_name,e_salary,e_phone,e_jobtype,e_address) values(103,'Mohammad Doad',10000,01700000131,'Selesman','Motijheel');
+insert into employee (e_id,e_name,e_salary,e_phone,e_jobtype,e_address) values(104,'Shahanoor Islam',10000,01700121311,'Selesman','Dhanmondi');
+insert into employee (e_id,e_name,e_salary,e_phone,e_jobtype,e_address) values(105,'Redwanul Haque',10000,01700110011,'Selesman','Mirpur');
+
+
+insert into customer (c_id,c_name,c_phone,c_email,c_address) values(201,'Sheikh Hasina Wazed',01700000000,'sheikhhasina@gmail.com','Gopalganj');
+insert into customer (c_id,c_name,c_phone,c_email,c_address) values(202,'Khaleda Khanam Putul',01700000001,'khaledazia@gmail.com','Dinajpur');
+insert into customer (c_id,c_name,c_phone,c_email,c_address) values(203,'Sayem Sobhan Anvir',01700000011,'sayemsobhananvir@gmail.com','Basundhara R/A');
+insert into customer (c_id,c_name,c_phone,c_email,c_address) values(204,'Salman F Rahman',01700000111,'salmanfrahman@gmail.com','Dhanmondi');
+insert into customer (c_id,c_name,c_phone,c_email,c_address) values(205,'Shakib Al Hasan',01700100111,'shakibalhasan@gmail.com','Magura');
+
+
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(301,'Lamborghini Huracán Evo','Lamborghini','Blu Asteria',17519880);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(302,'Rolls-Royce Ghost','Rolls-Royce','Black Sapphire',15894760);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(303,'Bentley Flying Spur','Bentley','Beluga',14582340);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(304,'Mercedes-Maybach S-Class','Mercedes-Maybach','Obsidian Black',13877000);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(305,'Range Rover SVAutobiography','Land Rover','Corris Grey',13757500);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(306,'Ferrari Roma','Ferrari','Rosso Corsa',12873200);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(307,'Porsche Panamera Turbo S','Porsche','Black',12342200);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(308,'Aston Martin DB11 V8','Aston Martin','Quantum Silver',11811160);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(309,'Lexus LS 500h','Lexus','Deep Blue Mica',11280000);
+insert into car (car_id,car_name,car_brand,car_color,car_price) values(310,'Quattroporte GranTurismo','Maserati','Nero Ribelle',10848840);
+
+insert into pay (p_id,p_date,p_type,c_id) values(401,'10-Jan-2023','visa card',201);
+insert into pay (p_id,p_date,p_type,c_id) values(402,'20-Feb-2023','cash',202);
+insert into pay (p_id,p_date,p_type,c_id) values(403,'30-Mar-2023','cash',203);
+insert into pay (p_id,p_date,p_type,c_id) values(404,'11-Apr-2023','cash',204);
+insert into pay (p_id,p_date,p_type,c_id) values(405,'30-Aug-2023','visa card',205);
+
+insert into manage (e_id,e_name,e_salary,e_phone,e_jobtype,e_address,m_id) values(101,'Hasibul Islam Hasib',10000,01700001111,'Selesman','Basundhara R/A',1);
+insert into manage (e_id,e_name,e_salary,e_phone,e_jobtype,e_address,m_id) values(102,'Adriyana Jannat',10000,01710001112,'Selesman','Gulshan',1);
+insert into manage (e_id,e_name,e_salary,e_phone,e_jobtype,e_address,m_id) values(103,'Mohammad Doad',10000,01700000131,'Selesman','Motijheel',1);
+insert into manage (e_id,e_name,e_salary,e_phone,e_jobtype,e_address,m_id) values(104,'Shahanoor Islam',10000,01700121311,'Selesman','Dhanmondi',1);
+insert into manage (e_id,e_name,e_salary,e_phone,e_jobtype,e_address,m_id) values(105,'Redwanul Haque',10000,01700110011,'Selesman','Mirpur',1);
+
+insert into assist (e_id,c_id) values(101,201);
+insert into assist (e_id,c_id) values(102,202);
+insert into assist (e_id,c_id) values(103,203);
+insert into assist (e_id,c_id) values(104,204);
+insert into assist (e_id,c_id) values(105,205);
+
+insert into buy (c_id,car_id) values(201,305);
+insert into buy (c_id,car_id) values(202,304);
+insert into buy (c_id,car_id) values(203,306);
+insert into buy (c_id,car_id) values(204,301);
+insert into buy (c_id,car_id) values(205,310);
+
+

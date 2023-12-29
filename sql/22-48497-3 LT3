@@ -1,0 +1,15 @@
+1. Select deptno , ename , sal , job from emp where LOWER(job) = 'manager'
+2. Select ename || ' ' || deptno "NAME & DEPTNO" , LENGTH(ename) "Length" from emp where Length(ename) <= 7
+3. Select ename from emp where job like '%ANA%'
+4. SELECT ROUND(79.78) from DUAL
+   SELECT TRUNC(79.78) FROM DUAL
+5. SELECT SYSDATE FROM DUAL
+6. SELECT ename, sal, comm, JOB , MOD(sal, comm) FROM emp WHERE	job = 'MANAGER'
+7. SELECT ename , ROUND((SYSDATE-hiredate)/30,0) "WORKING MONTH" FROM emp WHERE ENAME = 'TURNER'
+8. SELECT NEXT_DAY ('12-OCT-22','WEDNESDAY') FROM DUAL
+9. SELECT ENAME , HIREDATE , ROUND((SYSDATE-hiredate)/30,0) FROM EMP WHERE ENAME = 'BLAKE'
+10. SELECT ENAME , SAL , TO_CHAR(sal,'$99,999.99') SALARY FROM emp WHERE	ename = 'TURNER'
+11. SELECT ENAME , COMM NVL(COMM,0)*12 "ANNUAL COMM" FROM   emp
+12. SELECT ENAME , JOB, SAL DECODE(job, 'CLERK', SAL*0.02+SAL, 'PRESIDENT', SAL * 0.05+SAL, 'SALESMAN', SAL*0.07+SAL, SAL) CHANGED_SALARY FROM emp
+13. SELECT INITCAP('I LOVE MY COUNTRY AND I LOVE MY JOB') FROM DUAL
+14. Select 'The comm of ' || ENAME || ' is ' || nvl(To_char(comm),'null') from emp

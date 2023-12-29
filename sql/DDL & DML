@@ -1,0 +1,203 @@
+DDL--> DATA DEFINITION LANGUAGE 
+DML--> DATA MANIPULATION LANGUAGE 
+
+ 
+
+4.67 Prec- 3, scale-2
+45.678 prec-5, scale -3
+23.7 prec-3, scale-1
+567.78 prec-5, scale-2
+4.890 prec-4, scale-3
+67.09 prec-4, scale-2
+3.90(3.9) prec-3, scale-2
+3.78 p-3, s-2
+03.90 p-4, s-2
+
+ 
+
+********DDL*******
+CREATE, ALTER, RENAME, TRUNCATE, DROP 
+
+ 
+
+DESCRIBE TABLE 
+WHATEVER WE GET... WILL BE PART OF DDL
+
+ 
+
+Table creation:
+
+ 
+
+create table class (classname varchar(40), classid number(3) primary key)
+
+ 
+
+
+select * from class
+
+ 
+
+describe class
+
+ 
+
+Adding a new column in the table:
+
+ 
+
+alter table class add (classdate date)
+
+ 
+
+alter table class add (avgcgpa number(4,2))
+
+ 
+
+What if we want to change the datatype of a column or change the size of that datatype?
+Table modification:
+
+ 
+
+alter table class modify (avgcgpa number(3,2))
+
+ 
+
+alter table class modify (classdate varchar2(12))
+
+ 
+
+alter table class modify(classdate date)
+
+ 
+
+alter table class modify(classname varchar2(30))
+
+ 
+
+describe class
+
+ 
+
+******** Column name change *********
+
+ 
+
+alter table class rename column classdate to dateofclass
+
+ 
+
+dropping a column:
+alter table class drop column dateofclass
+
+ 
+
+renaming the table:
+rename class to classinfo
+
+ 
+
+describe class (could not be found) because there is no class in that name anymore
+describe classinfo
+
+
+
+
+******DML******
+
+ 
+
+insert, delete, update, merge 
+
+ 
+
+insertion:
+
+ 
+
+syntax1: 
+
+ 
+
+insert into classinfo (classname, classid,avgcgpa, dateofclass) values ('PHYSICS', 111, 3.50, '12-JUL-22')
+FOR INSERTING NULL VALUES..
+insert into classinfo (classname, classid, dateofclass) values ('CHEMISTRY', 112, '10-FEB-21')
+
+ 
+
+insert into classinfo (dateofclass, classid, avgcgpa, classname) values ('21-JAN-23', 115, 3.78, 'ICT')
+
+ 
+
+insert into classinfo(classid, avgcgpa, classname) values (114, 3.65, 'MATH')
+
+ 
+
+SELECT * FROM CLASSINFO
+
+ 
+
+SYNTAX 2: (FOR QUICKER PURPOSE)
+
+ 
+
+insert into classinfo values ('ENGLISH', 119, 3.25, '23-MAY-21')
+
+ 
+
+insert into classinfo values ('BANGLA', 121, 3.45, '20-AUG-22')
+
+ 
+
+DELETING A SPECIFIC ROW:
+
+ 
+
+DELETE FROM CLASSINFO WHERE CLASSID = 119
+
+ 
+
+SELECT * FROM CLASSINFO
+
+ 
+
+DELETE FROM CLASSINFO WHERE CLASSID IN (111,121)
+
+ 
+
+DELETE FROM CLASSINFO WHERE AVGCGPA = 3.78
+
+ 
+
+DELETING ALL ROWS:
+
+ 
+
+DELETE FROM CLASSINFO 
+
+ 
+
+***SAME WORK IS DONE BY****
+
+ 
+
+TRUNCATE TABLE CLASSINFO
+
+ 
+
+DESCRIBE CLASSINFO
+
+ 
+
+**UPDATE ROWS**
+
+ 
+
+UPDATE CLASSINFO SET AVGCGPA = 3.7 WHERE CLASSID =111
+
+ 
+
+SELECT * FROM CLASSINFO
+
+
+
